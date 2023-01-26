@@ -1,6 +1,7 @@
 const axios = require("axios");
 require('dotenv').config()
 
+const year = new Date().getFullYear() - 1;
 const key = process.env.API_KEY;
 
 const getScores = async (req, res) => {
@@ -20,7 +21,6 @@ const getScores = async (req, res) => {
     // first Team Id request /////
     const teamOneResponse = await axios.request(teamOneOptions);
     // first Team ID ////
-    console.log(teamOneResponse.data.response[0].id);
     const teamOneId = await teamOneResponse.data.response[0].id;
 
     ///////////////////////////////////////////////
@@ -38,7 +38,6 @@ const getScores = async (req, res) => {
     // second Team Id request /////
     const teamTwoResponse = await axios.request(teamTwoOptions);
     // second Team Id ////
-    console.log(teamTwoResponse.data.response[0].id);
     const teamTwoId = await teamTwoResponse.data.response[0].id;
 
     ///////////////////////////////////////////////
@@ -47,7 +46,7 @@ const getScores = async (req, res) => {
     const gameOptions = {
       method: 'GET',
       url: 'https://api-nba-v1.p.rapidapi.com/games',
-      params: {season: '2022', h2h: `${teamOneId}-${teamTwoId}`},
+      params: {season: year, h2h: `${teamOneId}-${teamTwoId}`},
       headers: {
         'X-RapidAPI-Key': key,
         'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
@@ -56,7 +55,6 @@ const getScores = async (req, res) => {
     // games request ////
     const gamesResponse = await axios.request(gameOptions);
     // games response ////
-    console.log(gamesResponse.data.response);
     const games = await gamesResponse.data.response;
 
     // response //
