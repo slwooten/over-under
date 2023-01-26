@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 
 // game card component//
 import GameCard from '../GameCard';
+import ComparisonCard from '../ComparisonCard';
 
 import './searchForm.css';
 
@@ -113,9 +114,19 @@ const SearchForm = () => {
           <div></div>
         ) : (
           <div>
-            {results.map((result, index) => {
-              return <GameCard key={index} game={result} />
-            })}
+            <ComparisonCard
+              home={results[0].teams.home.name}
+              homeLogo={results[0].teams.home.logo}
+              away={results[0].teams.visitors.name}
+              awayLogo={results[0].teams.visitors.logo}
+              gamesPlayed={
+                results.filter(game => game.status.long === 'Finished')
+              }
+            />
+            {results.filter(game => game.status.long === 'Finished')
+              .map((result, index) => {
+                return <GameCard key={index} game={result} />
+              })}
           </div>
         )}
       </div>
