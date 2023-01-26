@@ -1,0 +1,24 @@
+{
+  "name": "over-under",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "develop": "concurrently \"cd api && npm run watch\" \"cd client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slwooten/over-under.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slwooten/over-under/issues"
+  },
+  "homepage": "https://github.com/slwooten/over-under#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
