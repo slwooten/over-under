@@ -8,3 +8,10 @@
 .inputs p {
   margin: 1rem;
 }
+
+.game-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}

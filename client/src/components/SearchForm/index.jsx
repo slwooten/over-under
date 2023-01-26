@@ -123,10 +123,13 @@ const SearchForm = () => {
                 results.filter(game => game.status.long === 'Finished')
               }
             />
-            {results.filter(game => game.status.long === 'Finished')
-              .map((result, index) => {
-                return <GameCard key={index} game={result} />
-              })}
+            <div className='game-cards'>
+              {results.filter(game => game.status.long === 'Finished')
+                .reverse()
+                .map((result, index) => {
+                  return <GameCard key={index} game={result} />
+                })}
+            </div>
           </div>
         )}
       </div>

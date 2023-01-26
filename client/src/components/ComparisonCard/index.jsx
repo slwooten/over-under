@@ -37,7 +37,7 @@ const ComparisonCard = ({ home, homeLogo, away, awayLogo, gamesPlayed }) => {
       </div>
       <div className="stats">
         <h3>Games played: <span className='games-played'>{gamesPlayed.length}</span></h3>
-        <h3>Avg Total PPG: <span className='avg'>{avgTotalPts}</span></h3>
+        <h3>Avg Total PPG: <span className='avg'>{Math.trunc(avgTotalPts)}</span></h3>
       </div>
     </div>
   );

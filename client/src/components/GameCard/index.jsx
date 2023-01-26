@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './gameCard.css';
 
 const GameCard = ({ game }) => {
+
+  // winner state
+  const [winner, setWinner] = useState();
 
   // date and formatting
   const dateInfo = new Date(game.date.start);
@@ -21,6 +24,18 @@ const GameCard = ({ game }) => {
   // total points scored in game
   const totalPts = game.scores.home.points + game.scores.visitors.points;
 
+  const determineWinner = (homePts, awayPts) => {
+    if (homePts > awayPts) {
+      setWinner(home);
+    } else {
+      setWinner(away);
+    }
+  };
+
+  useEffect(() => {
+    determineWinner(homePts, awayPts);
+  }, []);
+
   return (
     <div className="game-card">
       <h3>{
@@ -37,10 +52,10 @@ const GameCard = ({ game }) => {
                             month === 10 ? 'November' :
                               'December'
       }{' '}{date}, {year} @ {home}</h3>
-      <h3>Total Points Scored: {totalPts}</h3>
+      <h3>Total Points Scored: <span className='total'>{totalPts}</span></h3>
       <div className="final-score">
-        <h3>{home}: {homePts}</h3>
-        <h3>{away}: {awayPts}</h3>
+        <h3 className={winner === home ? 'winner' : 'loser'}>{home}: {homePts}</h3>
+        <h3 className={winner === away ? 'winner' : 'loser'}>{away}: {awayPts}</h3>
       </div>
     </div>
   );
