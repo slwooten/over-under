@@ -15,8 +15,9 @@ const SearchForm = () => {
   const [teamTwoHelpText, setTeamTwoHelpText] = useState('');
 
   const getGames = async (teams) => {
-    const games = await axios.post('/over-under/go', teams);
+    const response = await axios.post('/over-under/go', teams);
 
+    const games = await response.data.data;
     console.log(games);
   };
 
@@ -34,7 +35,7 @@ const SearchForm = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    // validate user input //
+    // validate user input 
     if (!formState.teamOne || !formState.teamTwo) {
       if (!formState.teamOne) {
         setTeamOneHelpText('Please enter a Team 1.');
@@ -52,10 +53,10 @@ const SearchForm = () => {
     }
 
     console.log('didnt return');
-    // api call //
+    // api call 
     getGames(formState);
 
-    // clear form inputs //
+    // clear form inputs
     setFormState({
       teamOne: '',
       teamTwo: ''
