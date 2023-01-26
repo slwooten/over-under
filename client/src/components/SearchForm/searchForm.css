@@ -1,0 +1,10 @@
+
+.inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs p {
+  margin: 1rem;
+}
