@@ -141,12 +141,15 @@ const SearchForm = () => {
                 results.filter(game => game.status.long === 'Finished')
               }
             />
-            <div className='game-cards'>
-              {results.filter(game => game.status.long === 'Finished')
-                .reverse()
-                .map((result, index) => {
-                  return <GameCard key={index} game={result} />
-                })}
+            <div className="game-cards-container">
+              <h3>{results[0].teams.home.nickname} and {results[0].teams.visitors.nickname} this season...</h3>
+              <div className='game-cards'>
+                {results.filter(game => game.status.long === 'Finished')
+                  .reverse()
+                  .map((result, index) => {
+                    return <GameCard key={index} game={result} />
+                  })}
+              </div>
             </div>
           </div>
         )}

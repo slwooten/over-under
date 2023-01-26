@@ -9,6 +9,11 @@
   margin: 1rem;
 }
 
+.game-cards-container {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
 .game-cards {
   display: flex;
   justify-content: center;
