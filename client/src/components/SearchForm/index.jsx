@@ -3,6 +3,9 @@ import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
+// game card component//
+import GameCard from '../GameCard';
+
 import './searchForm.css';
 
 const SearchForm = () => {
@@ -109,7 +112,11 @@ const SearchForm = () => {
         {!results ? (
           <div></div>
         ) : (
-          <p>Games Recieved</p>
+          <div>
+            {results.map((result, index) => {
+              return <GameCard key={index} game={result} />
+            })}
+          </div>
         )}
       </div>
     </div>
