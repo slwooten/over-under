@@ -21,6 +21,9 @@ const SearchForm = () => {
   const [teamOneHelpText, setTeamOneHelpText] = useState('');
   const [teamTwoHelpText, setTeamTwoHelpText] = useState('');
 
+  // search state //
+  const [searched, setSearched] = useState(false);
+
   const getGames = async (teams) => {
     const response = await axios.post('/over-under/go', teams);
 
@@ -60,9 +63,11 @@ const SearchForm = () => {
       return;
     }
 
-    console.log('didnt return');
     // api call 
     getGames(formState);
+
+    // hide search form
+    setSearched(true);
 
     // clear form inputs
     setFormState({
@@ -73,42 +78,48 @@ const SearchForm = () => {
 
   return (
     <div>
-      <h2 className="league">NBA</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="form">
-          <div className="inputs">
-            <TextField
-              onChange={handleChange}
-              name='teamOne'
-              sx={{ margin: '1rem' }}
-              color='success'
-              id="outlined-basic"
-              helperText={teamOneHelpText}
-              label="Team 1"
-              variant="outlined"
-              value={formState.teamOne} />
-            <p>vs</p>
-            <TextField
-              onChange={handleChange}
-              name='teamTwo'
-              sx={{ margin: '1rem' }}
-              color='success'
-              id="outlined-basic"
-              helperText={teamTwoHelpText}
-              label="Team 2"
-              variant="outlined"
-              value={formState.teamTwo} />
-          </div>
-          <Button sx={{
-            margin: '1rem',
-            backgroundColor: 'green',
-            '&:hover': {
-              backgroundColor: 'green',
-            },
-            textTransform: 'none'
-          }} variant="contained" type='submit' onClick={handleFormSubmit}>Go</Button>
-        </div>
-      </form>
+      {!searched ? (
+        <>
+          <h2 className="league">NBA</h2>
+          <form onSubmit={handleFormSubmit}>
+            <div className="form">
+              <div className="inputs">
+                <TextField
+                  onChange={handleChange}
+                  name='teamOne'
+                  sx={{ margin: '1rem' }}
+                  color='success'
+                  id="outlined-basic"
+                  helperText={teamOneHelpText}
+                  label="Team 1"
+                  variant="outlined"
+                  value={formState.teamOne} />
+                <p>vs</p>
+                <TextField
+                  onChange={handleChange}
+                  name='teamTwo'
+                  sx={{ margin: '1rem' }}
+                  color='success'
+                  id="outlined-basic"
+                  helperText={teamTwoHelpText}
+                  label="Team 2"
+                  variant="outlined"
+                  value={formState.teamTwo} />
+              </div>
+              <Button sx={{
+                margin: '1rem',
+                backgroundColor: 'green',
+                '&:hover': {
+                  backgroundColor: 'green',
+                },
+                textTransform: 'none'
+              }} variant="contained" type='submit' onClick={handleFormSubmit}>Go</Button>
+            </div>
+          </form>
+        </>
+      ) : (
+        <h3 onClick={() => setSearched(false)}>New Search</h3>
+      )}
       <div className="results-container">
         {!results ? (
           <div></div>
