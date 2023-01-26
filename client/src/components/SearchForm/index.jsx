@@ -10,6 +10,9 @@ const SearchForm = () => {
   // form state //
   const [formState, setFormState] = useState({ teamOne: '', teamTwo: '' });
 
+  // results state //
+  const [results, setResults] = useState();
+
   // input helper text state //
   const [teamOneHelpText, setTeamOneHelpText] = useState('');
   const [teamTwoHelpText, setTeamTwoHelpText] = useState('');
@@ -18,6 +21,7 @@ const SearchForm = () => {
     const response = await axios.post('/over-under/go', teams);
 
     const games = await response.data.data;
+    setResults(games);
     console.log(games);
   };
 
@@ -101,6 +105,13 @@ const SearchForm = () => {
           }} variant="contained" type='submit' onClick={handleFormSubmit}>Go</Button>
         </div>
       </form>
+      <div className="results-container">
+        {!results ? (
+          <div></div>
+        ) : (
+          <p>Games Recieved</p>
+        )}
+      </div>
     </div>
   );
 };
