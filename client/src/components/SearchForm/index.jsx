@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
@@ -8,6 +9,16 @@ const SearchForm = () => {
 
   // form state //
   const [formState, setFormState] = useState({ teamOne: '', teamTwo: '' });
+
+  // input helper text state //
+  const [teamOneHelpText, setTeamOneHelpText] = useState('');
+  const [teamTwoHelpText, setTeamTwoHelpText] = useState('');
+
+  const getGames = async (teams) => {
+    const games = await axios.post('/over-under/go', teams);
+
+    console.log(games);
+  };
 
   // handle input changes //
   const handleChange = (e) => {
@@ -23,8 +34,28 @@ const SearchForm = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formState);
+    // validate user input //
+    if (!formState.teamOne || !formState.teamTwo) {
+      if (!formState.teamOne) {
+        setTeamOneHelpText('Please enter a Team 1.');
+        setTimeout(() => {
+          setTeamOneHelpText('');
+        }, "2000");
+      };
+      if (!formState.teamTwo) {
+        setTeamTwoHelpText('Please enter a Team 2.');
+        setTimeout(() => {
+          setTeamTwoHelpText('');
+        }, "2000");
+      };
+      return;
+    }
 
+    console.log('didnt return');
+    // api call //
+    getGames(formState);
+
+    // clear form inputs //
     setFormState({
       teamOne: '',
       teamTwo: ''
@@ -43,6 +74,7 @@ const SearchForm = () => {
               sx={{ margin: '1rem' }}
               color='success'
               id="outlined-basic"
+              helperText={teamOneHelpText}
               label="Team 1"
               variant="outlined"
               value={formState.teamOne} />
@@ -53,6 +85,7 @@ const SearchForm = () => {
               sx={{ margin: '1rem' }}
               color='success'
               id="outlined-basic"
+              helperText={teamTwoHelpText}
               label="Team 2"
               variant="outlined"
               value={formState.teamTwo} />
