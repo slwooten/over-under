@@ -118,7 +118,14 @@ const SearchForm = () => {
           </form>
         </>
       ) : (
-        <h3 onClick={() => setSearched(false)}>New Search</h3>
+        <Button sx={{
+          margin: '1rem',
+          backgroundColor: 'green',
+          '&:hover': {
+            backgroundColor: 'green',
+          },
+          textTransform: 'none'
+        }} variant='contained' onClick={() => setSearched(false)}>New Search</Button>
       )}
       <div className="results-container">
         {!results ? (

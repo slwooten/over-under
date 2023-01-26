@@ -12,6 +12,7 @@ const ComparisonCard = ({ home, homeLogo, away, awayLogo, gamesPlayed }) => {
     if (gamesPlayed.length === 0) {
       setGamesPlayedState(false);
     } else {
+      setGamesPlayedState(true);
       // total points scored from h2hs
       const totalPts = gamesPlayed.map((game) => {
         const homePts = game.scores.home.points
@@ -19,16 +20,16 @@ const ComparisonCard = ({ home, homeLogo, away, awayLogo, gamesPlayed }) => {
 
         return homePts + awayPts;
       }).reduce((acc, currentVal) => acc + currentVal);
-      setGamesPlayedState(true);
 
       // avg total points scored from h2hs
       setAvgTotalPts(totalPts / gamesPlayed.length);
     }
   }
 
+  // executes checkGames every new search
   useEffect(() => {
     checkGames(gamesPlayed);
-  }, []);
+  }, [gamesPlayed]);
 
   // logos
   const homeSrc = homeLogo;
