@@ -31,23 +31,18 @@ const SearchForm = () => {
   const [searched, setSearched] = useState(false);
 
   const getGames = async (teams) => {
-    const response = await axios.post('/over-under/go', teams);
 
-    const games = await response.data.data;
-    setResults(games);
-    console.log(games);
-  };
+    try {
+      const response = await axios.post('/over-under/go', teams);
 
-  // handle input changes //
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    console.log(value);
-    console.log(name);
-
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
+      const games = await response.data.data;
+      setResults(games);
+      console.log(games);
+    } catch (error) {
+      // logs out too many request error
+      console.log(error.response.data);
+      setResults(false);
+    }
   };
 
   // handle form submission //
@@ -152,6 +147,14 @@ const SearchForm = () => {
         }} variant='contained' onClick={() => setSearched(false)}>New Search</Button>
       )}
       <div className="results-container">
+        {results === false ? (
+          <div className='limit-reached'>
+            <h2>You've reached your search limit. Please try again in 1 hour.</h2>
+            <p>Free searches up to 5 per hour.</p>
+          </div>
+        ) : (
+          <div></div>
+        )}
         {!results ? (
           <div></div>
         ) : (

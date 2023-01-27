@@ -1,6 +1,9 @@
 const express = require('express')
 const path = require('path');
 
+// require rate limit middleware
+const { accountLimiter } = require('./middleware/limit');
+
 const sportsApi = require('./routes/sportsApiRoute');
 
 const app = express()
@@ -9,7 +12,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use('/over-under', sportsApi);
+app.use('/over-under', accountLimiter, sportsApi);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));

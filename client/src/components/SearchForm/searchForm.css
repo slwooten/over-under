@@ -24,10 +24,18 @@
   flex-wrap: wrap;
 }
 
+.limit-reached h2{
+    max-width: 400px;
+  }
+
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 575px) {
   .inputs {
     flex-direction: column;
+  }
+
+  .limit-reached h2{
+    max-width: 275px;
   }
 }
