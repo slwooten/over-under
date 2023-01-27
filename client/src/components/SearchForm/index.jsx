@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
 
 // game card component//
 import GameCard from '../GameCard';
 import ComparisonCard from '../ComparisonCard';
 
+// nba teams array //
+import nbaTeams from '../../utils/nbaTeams';
+
 import './searchForm.css';
 
 const SearchForm = () => {
+
+  const sortedNba = nbaTeams.sort();
 
   // form state //
   const [formState, setFormState] = useState({ teamOne: '', teamTwo: '' });
@@ -35,6 +41,8 @@ const SearchForm = () => {
   // handle input changes //
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(value);
+    console.log(name);
 
     setFormState({
       ...formState,
@@ -84,27 +92,43 @@ const SearchForm = () => {
           <form onSubmit={handleFormSubmit}>
             <div className="form">
               <div className="inputs">
-                <TextField
-                  onChange={handleChange}
+                <Autocomplete
+                  autoSelect
+                  id="auto-select"
+                  options={sortedNba}
+                  onChange={(event, value) => setFormState({
+                    ...formState,
+                    teamOne: value
+                  })}
                   name='teamOne'
-                  sx={{ margin: '1rem' }}
-                  color='success'
-                  id="outlined-basic"
-                  helperText={teamOneHelpText}
-                  label="Team 1"
-                  variant="outlined"
-                  value={formState.teamOne} />
+                  renderInput={(params) =>
+                    <TextField
+                      {...params}
+                      sx={{ margin: '1rem', width: 200 }}
+                      helperText={teamOneHelpText}
+                      label="Team 1"
+                      value={formState.teamOne} />
+                  }
+                />
                 <p>vs</p>
-                <TextField
-                  onChange={handleChange}
+                <Autocomplete
+                  autoSelect
+                  id="auto-select"
+                  options={sortedNba}
+                  onChange={(event, value) => setFormState({
+                    ...formState,
+                    teamTwo: value
+                  })}
                   name='teamTwo'
-                  sx={{ margin: '1rem' }}
-                  color='success'
-                  id="outlined-basic"
-                  helperText={teamTwoHelpText}
-                  label="Team 2"
-                  variant="outlined"
-                  value={formState.teamTwo} />
+                  renderInput={(params) =>
+                    <TextField
+                      {...params}
+                      sx={{ margin: '1rem', width: 200 }}
+                      helperText={teamTwoHelpText}
+                      label="Team 1"
+                      value={formState.teamTwo} />
+                  }
+                />
               </div>
               <Button sx={{
                 margin: '1rem',
