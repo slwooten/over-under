@@ -17,7 +17,7 @@ Simple things like:
 
  You'll also get an averaged total of points from each time they've faced each other this season. 
  
- These stats are provided in order to help the user determine whether or not they should place a bet on the Over or the Under the next time these 2 teams face.
+ These stats are provided in order to help the user determine whether they should place a bet on the Over or the Under the next time these 2 teams face.
 
  ---
 
