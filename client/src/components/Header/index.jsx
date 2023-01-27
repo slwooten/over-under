@@ -8,7 +8,7 @@ const Header = () => {
     <div className='header-div'>
       <img src={logoSrc} alt="over/under logo" />
       <h1 className='title'>Over / Under</h1>
-      <p className="description">Quick stats to help you decide whether you should take the Over or the Under</p>
+      <p className="description">Quick stats to help you decide whether you should take the Over or the Under.</p>
     </div>
   );
 };

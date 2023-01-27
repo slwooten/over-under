@@ -3,6 +3,7 @@ import './App.css';
 // components //
 import Header from './components/Header';
 import SearchForm from './components/SearchForm';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
     <div className="App">
       <Header />
       <SearchForm />
+      <Footer />
     </div>
   );
 }
