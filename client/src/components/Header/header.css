@@ -7,6 +7,17 @@
   text-align: center;
 }
 
+.main-logo:hover {
+  transform: rotate(360deg);
+  transition: ease 2s;
+  cursor: pointer;
+}
+
+.main-logo {
+  animation-name: rotation;
+  animation-duration: 2s;
+}
+
 .title {
   font-size: 4rem;
 }
@@ -14,6 +25,16 @@
 .description {
   text-align: center;
   line-height: 1.5rem;
+}
+
+/* ANIMATION */
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* MEDIA QUERIES */
