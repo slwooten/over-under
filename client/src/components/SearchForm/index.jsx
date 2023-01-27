@@ -149,8 +149,8 @@ const SearchForm = () => {
       <div className="results-container">
         {results === false ? (
           <div className='limit-reached'>
-            <h2>You've reached your search limit. Please try again in 1 hour.</h2>
-            <p>Free searches up to 5 per hour.</p>
+            <h2>You've reached your search limit. Please try again in 24hrs.</h2>
+            <p>Free searches up to 3 per day.</p>
           </div>
         ) : (
           <div></div>
