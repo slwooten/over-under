@@ -1,3 +1,6 @@
+.form {
+  margin-bottom: 3rem;
+}
 
 .inputs {
   display: flex;
@@ -19,4 +22,12 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 575px) {
+  .inputs {
+    flex-direction: column;
+  }
 }

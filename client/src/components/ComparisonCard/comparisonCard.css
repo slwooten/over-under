@@ -17,7 +17,7 @@
 }
 
 .teams img {
-  max-width: 100;
+  max-width: 100px;
   max-height: 100px;
 }
 
@@ -46,4 +46,35 @@
 
 .avg {
   color: blue;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 575px) {
+
+  .home {
+    min-width: 100px;
+  }
+
+  .home h2 {
+    font-size: 1rem;
+  }
+
+  .home img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+  .away {
+    min-width: 100px;
+  }
+
+  .away h2 {
+    font-size: 1rem;
+  }
+
+  .away img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+
 }
