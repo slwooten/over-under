@@ -27,11 +27,14 @@ const getNbaUpcoming = async (req, res) => {
       const mascotHome = mascotArrHome.at(mascotArrHome.length - 1);
       const mascotArrAway = game.away_team.split(' ');
       const mascotAway = mascotArrAway.at(mascotArrAway.length - 1);
-      return (mascotHome === (teamOne || teamTwo) && mascotAway === (teamOne || teamTwo));
+      // return (mascotHome === (teamOne || teamTwo)) && (mascotAway === (teamOne || teamTwo));
+      return mascotHome === teamOne || teamTwo;
     }
 
     // upcoming game
     const upcomingGame = await upcomingResponse.data.filter(isTeam);
+
+    console.log('upcoming game here: ', upcomingGame);
 
     // response 
     res.status(200).json({

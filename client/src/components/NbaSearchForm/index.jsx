@@ -11,6 +11,7 @@ import NbaGameCard from '../NbaGameCard';
 import NbaComparisonCard from '../NbaComparisonCard';
 
 // upcoming components //
+import NbaUpcomingCard from '../NbaUpcomingCard';
 import NbaNoUp from '../NbaNoUp';
 
 // nba teams array //
@@ -47,8 +48,6 @@ const NbaSearchForm = () => {
     try {
       const response = await axios.post('/over-under/nba', teams);
       const upcomingResponse = await axios.post('/over-under/nba/upcoming', teams);
-
-      console.log('upcoming response', upcomingResponse);
 
       const games = await response.data.data;
       const upcoming = await upcomingResponse.data.data;
@@ -192,7 +191,7 @@ const NbaSearchForm = () => {
             {!upcomingResults || upcomingResults.length === 0 ? (
               <NbaNoUp />
             ) : (
-              <p>Booya</p>
+              <NbaUpcomingCard upcomingResults={upcomingResults} />
             )}
             <NbaComparisonCard
               home={results[0].teams.home.name}
