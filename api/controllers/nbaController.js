@@ -4,7 +4,7 @@ require('dotenv').config()
 const year = new Date().getFullYear() - 1;
 const key = process.env.API_KEY;
 
-const getScores = async (req, res) => {
+const getNbaScores = async (req, res) => {
   const { teamOne, teamTwo } = req.body;
 
   try {
@@ -67,4 +67,4 @@ const getScores = async (req, res) => {
   };
 };
 
-module.exports = { getScores };
+module.exports = { getNbaScores };

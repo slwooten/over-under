@@ -1,8 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const { getScores } = require('../controllers/sportsApiController');
+const { getNbaScores } = require('../controllers/nbaController');
+const { getNflScores } = require('../controllers/nflController');
 
-router.post('/go', getScores);
+// nba scores route
+router.post('/nba', getNbaScores);
+
+// nfl scores route
+router.post('/nfl', getNflScores);
 
 module.exports = router;
