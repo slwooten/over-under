@@ -8,14 +8,14 @@ import Button from '@mui/material/Button';
 import GameCard from '../GameCard';
 import ComparisonCard from '../ComparisonCard';
 
-// nba teams array //
-import nbaTeams from '../../utils/nbaTeams';
+// nfl teams array //
+import nflTeams from '../../utils/nflTeams';
 
 import './nfl.css';
 
 const NflSearchForm = () => {
 
-  const sortedNba = nbaTeams.sort();
+  const sortedNfl = nflTeams.sort();
 
   // form state //
   const [formState, setFormState] = useState({ teamOne: '', teamTwo: '' });
@@ -90,7 +90,7 @@ const NflSearchForm = () => {
                 <Autocomplete
                   autoSelect
                   id="auto-select"
-                  options={sortedNba}
+                  options={sortedNfl}
                   onChange={(event, value) => setFormState({
                     ...formState,
                     teamOne: value
@@ -109,7 +109,7 @@ const NflSearchForm = () => {
                 <Autocomplete
                   autoSelect
                   id="auto-select"
-                  options={sortedNba}
+                  options={sortedNfl}
                   onChange={(event, value) => setFormState({
                     ...formState,
                     teamTwo: value
