@@ -1,0 +1,41 @@
+.form {
+  margin-bottom: 3rem;
+}
+
+.inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs p {
+  margin: 1rem;
+}
+
+.game-cards-container {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.game-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.limit-reached h2{
+    max-width: 400px;
+  }
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 575px) {
+  .inputs {
+    flex-direction: column;
+  }
+
+  .limit-reached h2{
+    max-width: 275px;
+  }
+}

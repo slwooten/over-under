@@ -11,9 +11,9 @@ import ComparisonCard from '../ComparisonCard';
 // nba teams array //
 import nbaTeams from '../../utils/nbaTeams';
 
-import './searchForm.css';
+import './nba.css';
 
-const SearchForm = () => {
+const NbaSearchForm = () => {
 
   const sortedNba = nbaTeams.sort();
 
@@ -30,8 +30,9 @@ const SearchForm = () => {
   // search state //
   const [searched, setSearched] = useState(false);
 
-  const getGames = async (teams) => {
 
+  // api call
+  const getGames = async (teams) => {
     try {
       const response = await axios.post('/over-under/go', teams);
 
@@ -83,7 +84,6 @@ const SearchForm = () => {
     <div>
       {!searched ? (
         <>
-          <h2 className="league">NBA</h2>
           <form onSubmit={handleFormSubmit}>
             <div className="form">
               <div className="inputs">
@@ -185,4 +185,4 @@ const SearchForm = () => {
   );
 };
 
-export default SearchForm;
+export default NbaSearchForm;
