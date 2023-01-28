@@ -4,9 +4,12 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
 
-// game card component//
+// game card components //
 import NflGameCard from '../NflGameCard';
 import NflComparisonCard from '../NflComparisonCard';
+
+// no results card //
+import NflNoResultsCard from '../NflNoResultsCard';
 
 // nfl teams array //
 import nflTeams from '../../utils/nflTeams';
@@ -29,6 +32,10 @@ const NflSearchForm = () => {
 
   // search state //
   const [searched, setSearched] = useState(false);
+
+  // searched teams state //
+  const [searchedTeamOne, setSearchedTeamOne] = useState('');
+  const [searchedTeamTwo, setSearchedTeamTwo] = useState('');
 
 
   // api call
@@ -91,10 +98,13 @@ const NflSearchForm = () => {
                   autoSelect
                   id="auto-select"
                   options={sortedNfl}
-                  onChange={(event, value) => setFormState({
-                    ...formState,
-                    teamOne: value
-                  })}
+                  onChange={(event, value) => {
+                    setFormState({
+                      ...formState,
+                      teamOne: value
+                    })
+                    setSearchedTeamOne(value)
+                  }}
                   name='teamOne'
                   renderInput={(params) =>
                     <TextField
@@ -110,10 +120,13 @@ const NflSearchForm = () => {
                   autoSelect
                   id="auto-select"
                   options={sortedNfl}
-                  onChange={(event, value) => setFormState({
-                    ...formState,
-                    teamTwo: value
-                  })}
+                  onChange={(event, value) => {
+                    setFormState({
+                      ...formState,
+                      teamTwo: value
+                    })
+                    setSearchedTeamTwo(value)
+                  }}
                   name='teamTwo'
                   renderInput={(params) =>
                     <TextField
@@ -157,6 +170,8 @@ const NflSearchForm = () => {
         )}
         {!results ? (
           <div></div>
+        ) : results.length === 0 ? (
+          <NflNoResultsCard searchedTeamOne={searchedTeamOne} searchedTeamTwo={searchedTeamTwo} />
         ) : (
           <div>
             <NflComparisonCard
@@ -165,13 +180,15 @@ const NflSearchForm = () => {
               away={results[0].teams.away.name}
               awayLogo={results[0].teams.away.logo}
               gamesPlayed={
-                results.filter(game => game.status.long === 'Finished')
+                results.filter(game => game.game.status.long === 'Finished')
               }
             />
             <div className="game-cards-container">
-              <h3>{results[0].teams.home.name} and {results[0].teams.away.name} this season...</h3>
+              <h3>
+                {results[0].teams.home.name.split(' ').findLast((mascot) => mascot)} and {results[0].teams.away.name.split(' ').findLast((mascot) => mascot)} this season...
+              </h3>
               <div className='game-cards'>
-                {results.filter(game => game.status.long === 'Finished')
+                {results.filter(game => game.game.status.long === 'Finished')
                   .reverse()
                   .map((result, index) => {
                     return <NflGameCard key={index} game={result} />

@@ -4,11 +4,13 @@ import './nflGameCard.css';
 
 const NflGameCard = ({ game }) => {
 
+  console.log('nfl game', game);
+
   // winner state
   const [winner, setWinner] = useState();
 
   // date and formatting
-  const dateInfo = new Date(game.date.date);
+  const dateInfo = new Date(game.game.date.date);
   const month = dateInfo.getMonth();
   const year = dateInfo.getFullYear();
   const date = dateInfo.getDate();
@@ -22,7 +24,7 @@ const NflGameCard = ({ game }) => {
   const awayPts = game.scores.away.total;
 
   // total points scored in game
-  const totalPts = game.scores.home.total + game.scores.visitors.total;
+  const totalPts = game.scores.home.total + game.scores.away.total;
 
   const determineWinner = (homePts, awayPts) => {
     if (homePts > awayPts) {

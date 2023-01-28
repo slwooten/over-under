@@ -16,7 +16,7 @@ const NflComparisonCard = ({ home, homeLogo, away, awayLogo, gamesPlayed }) => {
       // total points scored from h2hs
       const totalPts = gamesPlayed.map((game) => {
         const homePts = game.scores.home.total
-        const awayPts = game.scores.visitors.total;
+        const awayPts = game.scores.away.total;
 
         return homePts + awayPts;
       }).reduce((acc, currentVal) => acc + currentVal);
@@ -57,7 +57,7 @@ const NflComparisonCard = ({ home, homeLogo, away, awayLogo, gamesPlayed }) => {
             <h3>Avg Total PPG: <span className='avg'>{Math.trunc(avgTotalPts)}</span></h3>
           </>
         ) : (
-          <h3 style={{ maxWidth: '250px', lineHeight: '2rem' }}>{home} and {away} have yet to face each other this season.</h3>
+          <h3 style={{ maxWidth: '250px', lineHeight: '2rem' }}>{home.split(' ').findLast((mascot) => mascot)} and {away.split(' ').findLast((mascot) => mascot)} have yet to face each other this season.</h3>
         )}
       </div>
     </div>
