@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import './gameCard.css';
+import './nbaGameCard.css';
 
-const GameCard = ({ game }) => {
+const NbaGameCard = ({ game }) => {
 
   // winner state
   const [winner, setWinner] = useState();
@@ -61,4 +61,4 @@ const GameCard = ({ game }) => {
   );
 };
 
-export default GameCard;
+export default NbaGameCard;

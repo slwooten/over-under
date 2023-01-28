@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import './comparisonCard.css';
+import './nbaComparisonCard.css';
 
-const ComparisonCard = ({ home, homeLogo, away, awayLogo, gamesPlayed }) => {
+const NbaComparisonCard = ({ home, homeLogo, away, awayLogo, gamesPlayed }) => {
 
   // games played state, avg total pts state
   const [gamesPlayedState, setGamesPlayedState] = useState(false);
@@ -64,4 +64,4 @@ const ComparisonCard = ({ home, homeLogo, away, awayLogo, gamesPlayed }) => {
   );
 };
 
-export default ComparisonCard;
+export default NbaComparisonCard;

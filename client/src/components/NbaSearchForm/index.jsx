@@ -5,8 +5,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
 
 // game card component//
-import GameCard from '../GameCard';
-import ComparisonCard from '../ComparisonCard';
+import NbaGameCard from '../NbaGameCard';
+import NbaComparisonCard from '../NbaComparisonCard';
 
 // nba teams array //
 import nbaTeams from '../../utils/nbaTeams';
@@ -159,7 +159,7 @@ const NbaSearchForm = () => {
           <div></div>
         ) : (
           <div>
-            <ComparisonCard
+            <NbaComparisonCard
               home={results[0].teams.home.name}
               homeLogo={results[0].teams.home.logo}
               away={results[0].teams.visitors.name}
@@ -174,7 +174,7 @@ const NbaSearchForm = () => {
                 {results.filter(game => game.status.long === 'Finished')
                   .reverse()
                   .map((result, index) => {
-                    return <GameCard key={index} game={result} />
+                    return <NbaGameCard key={index} game={result} />
                   })}
               </div>
             </div>

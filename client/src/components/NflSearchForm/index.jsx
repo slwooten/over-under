@@ -5,8 +5,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
 
 // game card component//
-import GameCard from '../GameCard';
-import ComparisonCard from '../ComparisonCard';
+import NflGameCard from '../NflGameCard';
+import NflComparisonCard from '../NflComparisonCard';
 
 // nfl teams array //
 import nflTeams from '../../utils/nflTeams';
@@ -159,22 +159,22 @@ const NflSearchForm = () => {
           <div></div>
         ) : (
           <div>
-            <ComparisonCard
+            <NflComparisonCard
               home={results[0].teams.home.name}
               homeLogo={results[0].teams.home.logo}
-              away={results[0].teams.visitors.name}
-              awayLogo={results[0].teams.visitors.logo}
+              away={results[0].teams.away.name}
+              awayLogo={results[0].teams.away.logo}
               gamesPlayed={
                 results.filter(game => game.status.long === 'Finished')
               }
             />
             <div className="game-cards-container">
-              <h3>{results[0].teams.home.nickname} and {results[0].teams.visitors.nickname} this season...</h3>
+              <h3>{results[0].teams.home.name} and {results[0].teams.away.name} this season...</h3>
               <div className='game-cards'>
                 {results.filter(game => game.status.long === 'Finished')
                   .reverse()
                   .map((result, index) => {
-                    return <GameCard key={index} game={result} />
+                    return <NflGameCard key={index} game={result} />
                   })}
               </div>
             </div>

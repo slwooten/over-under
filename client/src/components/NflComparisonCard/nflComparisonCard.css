@@ -1,0 +1,80 @@
+.comparison-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.teams {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+.teams img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.home {
+  padding: 1rem;
+  /* border: solid orange 2px; */
+  min-width: 205px;
+}
+
+.away {
+  padding: 1rem;
+  /* border: solid orange 2px; */
+  min-width: 205px;
+}
+
+.vs {
+  align-self: flex-end;
+  padding: 1rem;
+  text-align: center;
+  /* border: solid orange 2px; */
+}
+
+.games-played {
+  color: green;
+}
+
+.avg {
+  color: blue;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 575px) {
+
+  .home {
+    min-width: 100px;
+  }
+
+  .home h2 {
+    font-size: 1rem;
+  }
+
+  .home img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+  .away {
+    min-width: 100px;
+  }
+
+  .away h2 {
+    font-size: 1rem;
+  }
+
+  .away img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+}

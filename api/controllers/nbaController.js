@@ -2,7 +2,7 @@ const axios = require("axios");
 require('dotenv').config()
 
 const year = new Date().getFullYear() - 1;
-const key = process.env.API_KEY;
+const key = process.env.NBA_KEY;
 
 const getNbaScores = async (req, res) => {
   const { teamOne, teamTwo } = req.body;
