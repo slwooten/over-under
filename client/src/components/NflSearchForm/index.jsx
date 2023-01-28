@@ -74,11 +74,11 @@ const NflSearchForm = () => {
       return;
     }
 
-    // api call 
-    getGames(formState);
-
     // hide search form
     setSearched(true);
+
+    // api call 
+    getGames(formState);
 
     // clear form inputs
     setFormState({
@@ -157,7 +157,10 @@ const NflSearchForm = () => {
             backgroundColor: 'green',
           },
           textTransform: 'none'
-        }} variant='contained' onClick={() => setSearched(false)}>New Search</Button>
+        }} variant='contained' onClick={() => {
+          setSearched(false)
+          setResults()
+        }}>New Search</Button>
       )}
       <div className="results-container">
         {results === false ? (
@@ -168,7 +171,7 @@ const NflSearchForm = () => {
         ) : (
           <div></div>
         )}
-        {!results ? (
+        {!results || searched === false ? (
           <div></div>
         ) : results.length === 0 ? (
           <NflNoResultsCard searchedTeamOne={searchedTeamOne} searchedTeamTwo={searchedTeamTwo} />
