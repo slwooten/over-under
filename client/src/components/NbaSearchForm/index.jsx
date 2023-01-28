@@ -40,6 +40,9 @@ const NbaSearchForm = () => {
   const getGames = async (teams) => {
     try {
       const response = await axios.post('/over-under/nba', teams);
+      const upcomingResponse = await axios.post('/over-under/nba/upcoming', teams);
+
+      console.log('upcoming response', upcomingResponse);
 
       const games = await response.data.data;
       setResults(games);

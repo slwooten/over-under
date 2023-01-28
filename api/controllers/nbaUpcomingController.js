@@ -21,15 +21,18 @@ const getNbaUpcoming = async (req, res) => {
     // upcoming game request
     const upcomingResponse = await axios(options);
 
-    // filtering the data for actual upcoming game
-    const upcomingGame = await upcomingResponse.filter((game) => {
-      game.home_team.split(' ').findLast((mascot) => mascot) === teamOne && game.away_team.split(' ').findLast((mascot) => mascot) === teamTwo
-    });
+    // filtering to get the correct game
+    const isTeam = (game) => {
+      const mascotArr = game.home_team.split(' ');
+      const mascot = mascotArr.at(mascotArr.length - 1);
+      return mascot === (teamOne || teamTwo);
+    }
 
-    console.log(upcomingGame);
+    // upcoming game
+    const upcomingGame = await upcomingResponse.data.filter(isTeam);
 
     // response 
-    res.status(200).jso({
+    res.status(200).json({
       success: true,
       data: upcomingGame
     });
