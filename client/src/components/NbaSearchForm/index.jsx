@@ -22,8 +22,11 @@ const NbaSearchForm = () => {
   // form state //
   const [formState, setFormState] = useState({ teamOne: '', teamTwo: '' });
 
-  // results state //
+  // results state (previous games) //
   const [results, setResults] = useState();
+
+  // upcoming game results state //
+  const [upcomingResults, setUpcomingResults] = useState();
 
   // input helper text state //
   const [teamOneHelpText, setTeamOneHelpText] = useState('');
@@ -45,7 +48,10 @@ const NbaSearchForm = () => {
       console.log('upcoming response', upcomingResponse);
 
       const games = await response.data.data;
+      const upcoming = await upcomingResponse.data.data;
+      
       setResults(games);
+      setUpcomingResults(upcoming);
     } catch (error) {
       // logs out too many request error
       console.log(error.response.data);
@@ -180,6 +186,11 @@ const NbaSearchForm = () => {
           <div></div>
         ) : loading === false ? (
           <div>
+            {!upcomingResults || upcomingResults.length === 0 ? (
+              <p>none here</p>
+            ) : (
+              <p>Booya</p>
+            )}
             <NbaComparisonCard
               home={results[0].teams.home.name}
               homeLogo={results[0].teams.home.logo}

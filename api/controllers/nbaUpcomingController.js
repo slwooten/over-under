@@ -23,9 +23,11 @@ const getNbaUpcoming = async (req, res) => {
 
     // filtering to get the correct game
     const isTeam = (game) => {
-      const mascotArr = game.home_team.split(' ');
-      const mascot = mascotArr.at(mascotArr.length - 1);
-      return mascot === (teamOne || teamTwo);
+      const mascotArrHome = game.home_team.split(' ');
+      const mascotHome = mascotArrHome.at(mascotArrHome.length - 1);
+      const mascotArrAway = game.away_team.split(' ');
+      const mascotAway = mascotArrAway.at(mascotArrAway.length - 1);
+      return (mascotHome === (teamOne || teamTwo) && mascotAway === (teamOne || teamTwo));
     }
 
     // upcoming game
