@@ -32,6 +32,7 @@ Simple things like:
  ### Back End:
 
  - [API-NBA by API-SPORTS](https://rapidapi.com/api-sports/api/api-nba/)
+ - [API-AMERICAN-FOOTBALL by API-SPORTS](https://rapidapi.com/api-sports/api/api-american-football)
  - [Express.js](https://expressjs.com/)
  - [Node.js](https://nodejs.org/en/)
  - [Axios](https://www.npmjs.com/package/axios)
