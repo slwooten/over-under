@@ -4,8 +4,6 @@ import './nflGameCard.css';
 
 const NflGameCard = ({ game }) => {
 
-  console.log('nfl game', game);
-
   // winner state
   const [winner, setWinner] = useState();
 

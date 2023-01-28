@@ -38,7 +38,6 @@ const NbaSearchForm = () => {
 
       const games = await response.data.data;
       setResults(games);
-      console.log(games);
     } catch (error) {
       // logs out too many request error
       console.log(error.response.data);
