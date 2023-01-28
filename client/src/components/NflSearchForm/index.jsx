@@ -3,6 +3,8 @@ import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 // game card components //
 import NflGameCard from '../NflGameCard';
@@ -36,6 +38,9 @@ const NflSearchForm = () => {
   // searched teams state //
   const [searchedTeamOne, setSearchedTeamOne] = useState('');
   const [searchedTeamTwo, setSearchedTeamTwo] = useState('');
+
+  // loading state //
+  const [loading, setLoading] = useState(false);
 
 
   // api call
@@ -73,11 +78,18 @@ const NflSearchForm = () => {
       return;
     }
 
-    // hide search form
-    setSearched(true);
+    // show loader
+    setLoading(true);
+    // hide loader
+    setTimeout(() => {
+      setLoading(false);
+    }, "2000");
 
     // api call 
     getGames(formState);
+
+    // hide search form
+    setSearched(true);
 
     // clear form inputs
     setFormState({
@@ -162,7 +174,14 @@ const NflSearchForm = () => {
         }}>New Search</Button>
       )}
       <div className="results-container">
-        {results === false ? (
+        {loading ? (
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '1rem' }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          <></>
+        )}
+        {results === false && loading === false ? (
           <div className='limit-reached'>
             <h2>You've reached your search limit. Please try again in 24hrs.</h2>
             <p>Free searches up to 3 per day.</p>
@@ -174,7 +193,7 @@ const NflSearchForm = () => {
           <div></div>
         ) : results.length === 0 ? (
           <NflNoResultsCard searchedTeamOne={searchedTeamOne} searchedTeamTwo={searchedTeamTwo} />
-        ) : (
+        ) : loading === false ? (
           <div>
             <NflComparisonCard
               home={results[0].teams.home.name}
@@ -198,6 +217,8 @@ const NflSearchForm = () => {
               </div>
             </div>
           </div>
+        ) : (
+          <></>
         )}
       </div>
     </div>

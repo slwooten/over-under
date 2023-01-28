@@ -3,6 +3,8 @@ import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 // game card component//
 import NbaGameCard from '../NbaGameCard';
@@ -29,6 +31,9 @@ const NbaSearchForm = () => {
 
   // search state //
   const [searched, setSearched] = useState(false);
+
+  // loading state //
+  const [loading, setLoading] = useState(false);
 
 
   // api call
@@ -65,6 +70,13 @@ const NbaSearchForm = () => {
       };
       return;
     }
+
+    // show loader
+    setLoading(true);
+    // hide loader
+    setTimeout(() => {
+      setLoading(false);
+    }, "2000");
 
     // api call 
     getGames(formState);
@@ -146,7 +158,14 @@ const NbaSearchForm = () => {
         }} variant='contained' onClick={() => setSearched(false)}>New Search</Button>
       )}
       <div className="results-container">
-        {results === false ? (
+        {loading ? (
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '1rem' }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          <></>
+        )}
+        {results === false && loading === false ? (
           <div className='limit-reached'>
             <h2>You've reached your search limit. Please try again in 24hrs.</h2>
             <p>Free searches up to 3 per day.</p>
@@ -156,7 +175,7 @@ const NbaSearchForm = () => {
         )}
         {!results ? (
           <div></div>
-        ) : (
+        ) : loading === false ? (
           <div>
             <NbaComparisonCard
               home={results[0].teams.home.name}
@@ -178,6 +197,8 @@ const NbaSearchForm = () => {
               </div>
             </div>
           </div>
+        ) : (
+          <></>
         )}
       </div>
     </div>
