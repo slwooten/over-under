@@ -41,13 +41,13 @@ Simple things like:
 
 ## Future Development
 
-Currently, Over / Under only provides statistics for the NBA. In the near future, other professional leagues like the NFL, MLB, and NHL hope to be added. If you are interested in contributing to that development, feel free to reach out. My contact information is located in the Support section of this document.
+Currently, Over / Under only provides statistics for the NBA and the NFL. In the near future, other professional leagues like the MLB, and NHL hope to be added. If you are interested in contributing to that development, feel free to reach out. My contact information is located in the Support section of this document.
 
 ---
 
 ## Visuals
 
-![alt text](/assets/imgs/o-u-landing.png)
+![alt text](/assets/imgs/ou-readme-visual.png)
 
 ---
 
