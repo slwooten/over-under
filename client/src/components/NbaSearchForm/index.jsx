@@ -10,6 +10,9 @@ import Box from '@mui/material/Box';
 import NbaGameCard from '../NbaGameCard';
 import NbaComparisonCard from '../NbaComparisonCard';
 
+// upcoming components //
+import NbaNoUp from '../NbaNoUp';
+
 // nba teams array //
 import nbaTeams from '../../utils/nbaTeams';
 
@@ -187,7 +190,7 @@ const NbaSearchForm = () => {
         ) : loading === false ? (
           <div>
             {!upcomingResults || upcomingResults.length === 0 ? (
-              <p>none here</p>
+              <NbaNoUp />
             ) : (
               <p>Booya</p>
             )}
