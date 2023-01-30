@@ -2,10 +2,11 @@
   "name": "over-under",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "api/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "develop": "concurrently \"cd api && npm run watch\" \"cd client && npm start\""
+    "develop": "concurrently \"cd api && npm run watch\" \"cd client && npm start\"",
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
