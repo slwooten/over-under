@@ -1,6 +1,9 @@
 {
   "name": "over-under",
   "version": "1.0.0",
+  "engines": {
+    "node": "18.x"
+  },
   "description": "",
   "main": "api/app.js",
   "scripts": {
