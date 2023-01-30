@@ -11,8 +11,8 @@ import NbaGameCard from '../NbaGameCard';
 import NbaComparisonCard from '../NbaComparisonCard';
 
 // upcoming components //
-import NbaUpcomingCard from '../NbaUpcomingCard';
-import NbaNoUp from '../NbaNoUp';
+// import NbaUpcomingCard from '../NbaUpcomingCard';
+// import NbaNoUp from '../NbaNoUp';
 
 // nba teams array //
 import nbaTeams from '../../utils/nbaTeams';
@@ -30,7 +30,7 @@ const NbaSearchForm = () => {
   const [results, setResults] = useState();
 
   // upcoming game results state //
-  const [upcomingResults, setUpcomingResults] = useState();
+  // const [upcomingResults, setUpcomingResults] = useState();
 
   // input helper text state //
   const [teamOneHelpText, setTeamOneHelpText] = useState('');
@@ -47,13 +47,13 @@ const NbaSearchForm = () => {
   const getGames = async (teams) => {
     try {
       const response = await axios.post('/over-under/nba', teams);
-      const upcomingResponse = await axios.post('/over-under/nba/upcoming', teams);
+      // const upcomingResponse = await axios.post('/over-under/nba/upcoming', teams);
 
       const games = await response.data.data;
-      const upcoming = await upcomingResponse.data.data;
-      
+      // const upcoming = await upcomingResponse.data.data;
+
       setResults(games);
-      setUpcomingResults(upcoming);
+      // setUpcomingResults(upcoming);
     } catch (error) {
       // logs out too many request error
       console.log(error.response.data);
@@ -188,11 +188,11 @@ const NbaSearchForm = () => {
           <div></div>
         ) : loading === false ? (
           <div>
-            {!upcomingResults || upcomingResults.length === 0 ? (
+            {/* {!upcomingResults || upcomingResults.length === 0 ? (
               <NbaNoUp />
             ) : (
               <NbaUpcomingCard upcomingResults={upcomingResults} />
-            )}
+            )} */}
             <NbaComparisonCard
               home={results[0].teams.home.name}
               homeLogo={results[0].teams.home.logo}
@@ -203,21 +203,25 @@ const NbaSearchForm = () => {
               }
             />
             <div className="game-cards-container">
-              <h3>{results[0].teams.home.nickname} and {results[0].teams.visitors.nickname} this season...</h3>
-              <div className='game-cards'>
-                {results.filter(game => game.status.long === 'Finished')
-                  .reverse()
-                  .map((result, index) => {
-                    return <NbaGameCard key={index} game={result} />
-                  })}
-              </div>
+              {results.filter(game => game.status.long === 'Finished').length === 0 ? (
+                <div></div>
+              ): (
+                  <h3>{results[0].teams.home.nickname} and {results[0].teams.visitors.nickname} this season...</h3>
+              )}
+            <div className='game-cards'>
+              {results.filter(game => game.status.long === 'Finished')
+                .reverse()
+                .map((result, index) => {
+                  return <NbaGameCard key={index} game={result} />
+                })}
             </div>
           </div>
-        ) : (
-          <></>
+          </div>
+      ) : (
+      <></>
         )}
-      </div>
     </div>
+    </div >
   );
 };
 

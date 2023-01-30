@@ -34,7 +34,7 @@ const getNbaUpcoming = async (req, res) => {
     // upcoming game
     const upcomingGame = await upcomingResponse.data.filter(isTeam);
 
-    console.log('upcoming game here: ', upcomingGame);
+    // console.log('upcoming game here: ', upcomingGame);
 
     // response 
     res.status(200).json({
