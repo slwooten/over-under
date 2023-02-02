@@ -120,6 +120,7 @@ const NbaSearchForm = () => {
                   name='teamOne'
                   renderInput={(params) =>
                     <TextField
+                      color='success'
                       {...params}
                       sx={{ margin: '1rem', width: 200 }}
                       helperText={teamOneHelpText}
@@ -139,6 +140,7 @@ const NbaSearchForm = () => {
                   name='teamTwo'
                   renderInput={(params) =>
                     <TextField
+                      color='success'
                       {...params}
                       sx={{ margin: '1rem', width: 200 }}
                       helperText={teamTwoHelpText}
@@ -205,22 +207,22 @@ const NbaSearchForm = () => {
             <div className="game-cards-container">
               {results.filter(game => game.status.long === 'Finished').length === 0 ? (
                 <div></div>
-              ): (
-                  <h3>{results[0].teams.home.nickname} and {results[0].teams.visitors.nickname} this season...</h3>
+              ) : (
+                <h3>{results[0].teams.home.nickname} and {results[0].teams.visitors.nickname} this season...</h3>
               )}
-            <div className='game-cards'>
-              {results.filter(game => game.status.long === 'Finished')
-                .reverse()
-                .map((result, index) => {
-                  return <NbaGameCard key={index} game={result} />
-                })}
+              <div className='game-cards'>
+                {results.filter(game => game.status.long === 'Finished')
+                  .reverse()
+                  .map((result, index) => {
+                    return <NbaGameCard key={index} game={result} />
+                  })}
+              </div>
             </div>
           </div>
-          </div>
-      ) : (
-      <></>
+        ) : (
+          <></>
         )}
-    </div>
+      </div>
     </div >
   );
 };

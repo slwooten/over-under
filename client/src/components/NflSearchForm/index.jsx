@@ -119,6 +119,7 @@ const NflSearchForm = () => {
                   name='teamOne'
                   renderInput={(params) =>
                     <TextField
+                      color='success'
                       {...params}
                       sx={{ margin: '1rem', width: 200 }}
                       helperText={teamOneHelpText}
@@ -141,6 +142,7 @@ const NflSearchForm = () => {
                   name='teamTwo'
                   renderInput={(params) =>
                     <TextField
+                      color='success'
                       {...params}
                       sx={{ margin: '1rem', width: 200 }}
                       helperText={teamTwoHelpText}
