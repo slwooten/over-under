@@ -54,66 +54,73 @@ const getNbaPlayer = async (req, res) => {
     // stats response
     const statsRes = await axios.request(statOptions);
 
-    // getting player name
-    const playerName = `${statsRes.data.response[0].player.firstname} ${statsRes.data.response[0].player.lastname}`;
+    // check to see if player was found
+    if (statsRes.data.response.length === 0) {
+      res.status(404).json({
+        status: 'Error',
+        message: 'Player not found.'
+      });
+    } else {
+      // getting player name
+      const playerName = `${statsRes.data.response[0].player.firstname} ${statsRes.data.response[0].player.lastname}`;
 
-    // getting totals
-    statsRes.data.response.map((game) => {
-      totalPts += game.points;
-      totalReb += game.totReb;
-      totalAssists += game.assists;
-      totalSteals += game.steals;
-      totalBlocks += game.blocks;
-      totalTurnovers += game.turnovers;
-    })
+      // getting totals
+      statsRes.data.response.map((game) => {
+        totalPts += game.points;
+        totalReb += game.totReb;
+        totalAssists += game.assists;
+        totalSteals += game.steals;
+        totalBlocks += game.blocks;
+        totalTurnovers += game.turnovers;
+      })
 
-    // getting averages
-    // pts
-    const avgPtsArr = JSON.stringify(totalPts / statsRes.data.response.length)
-      .split(".");
-    const avgPts = Number(`${avgPtsArr[0]}.${avgPtsArr[1].charAt(0)}`);
+      // getting averages
+      // pts
+      const avgPtsArr = JSON.stringify(totalPts / statsRes.data.response.length)
+        .split(".");
+      const avgPts = Number(`${avgPtsArr[0]}.${avgPtsArr[1].charAt(0)}`);
 
-    // rebs
-    const avgRebArr = JSON.stringify(totalReb / statsRes.data.response.length)
-      .split(".");
-    const avgReb = Number(`${avgRebArr[0]}.${avgRebArr[1].charAt(0)}`);
+      // rebs
+      const avgRebArr = JSON.stringify(totalReb / statsRes.data.response.length)
+        .split(".");
+      const avgReb = Number(`${avgRebArr[0]}.${avgRebArr[1].charAt(0)}`);
 
-    // assists
-    const avgAssistsArr = JSON.stringify(totalAssists / statsRes.data.response.length)
-      .split(".");
-    const avgAssists = Number(`${avgAssistsArr[0]}.${avgAssistsArr[1].charAt(0)}`);
+      // assists
+      const avgAssistsArr = JSON.stringify(totalAssists / statsRes.data.response.length)
+        .split(".");
+      const avgAssists = Number(`${avgAssistsArr[0]}.${avgAssistsArr[1].charAt(0)}`);
 
-    // steals
-    const avgStealsArr = JSON.stringify(totalSteals / statsRes.data.response.length)
-      .split(".");
-    const avgSteals = Number(`${avgStealsArr[0]}.${avgStealsArr[1].charAt(0)}`);
+      // steals
+      const avgStealsArr = JSON.stringify(totalSteals / statsRes.data.response.length)
+        .split(".");
+      const avgSteals = Number(`${avgStealsArr[0]}.${avgStealsArr[1].charAt(0)}`);
 
-    // blocks
-    const avgBlocksArr = JSON.stringify(totalBlocks / statsRes.data.response.length)
-      .split(".");
-    const avgBlocks = Number(`${avgBlocksArr[0]}.${avgBlocksArr[1].charAt(0)}`);
+      // blocks
+      const avgBlocksArr = JSON.stringify(totalBlocks / statsRes.data.response.length)
+        .split(".");
+      const avgBlocks = Number(`${avgBlocksArr[0]}.${avgBlocksArr[1].charAt(0)}`);
 
-    // turnovers
-    const avgTurnoversArr = JSON.stringify(totalTurnovers / statsRes.data.response.length)
-      .split(".");
-    const avgTurnovers = Number(`${avgTurnoversArr[0]}.${avgTurnoversArr[1].charAt(0)}`);
+      // turnovers
+      const avgTurnoversArr = JSON.stringify(totalTurnovers / statsRes.data.response.length)
+        .split(".");
+      const avgTurnovers = Number(`${avgTurnoversArr[0]}.${avgTurnoversArr[1].charAt(0)}`);
 
-    // compiled player info
-    const playerStats = {
-      playerName,
-      avgPts,
-      avgReb,
-      avgAssists,
-      avgSteals,
-      avgBlocks,
-      avgTurnovers
-    };
+      // compiled player info
+      const playerStats = {
+        playerName,
+        avgPts,
+        avgReb,
+        avgAssists,
+        avgSteals,
+        avgBlocks,
+        avgTurnovers
+      };
 
-    res.status(200).json({
-      status: 'Success',
-      data: playerStats
-    });
-
+      res.status(200).json({
+        status: 'Success',
+        data: playerStats
+      });
+    }
   } catch (error) {
     console.log(error);
   }
