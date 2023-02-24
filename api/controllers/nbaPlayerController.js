@@ -44,7 +44,7 @@ const getNbaPlayer = async (req, res) => {
     const statOptions = {
       method: 'GET',
       url: 'https://api-nba-v1.p.rapidapi.com/players/statistics',
-      params: {id: playerId, season: year},
+      params: { id: playerId, season: year },
       headers: {
         'X-RapidAPI-Key': key,
         'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
@@ -64,16 +64,39 @@ const getNbaPlayer = async (req, res) => {
       totalAssists += game.assists;
       totalSteals += game.steals;
       totalBlocks += game.blocks;
-      totalTurnovers += game.turnovers; 
+      totalTurnovers += game.turnovers;
     })
 
     // getting averages
-    const avgPts = Math.round(totalPts / statsRes.data.response.length);
-    const avgReb = Math.round(totalReb / statsRes.data.response.length);
-    const avgAssists = Math.round(totalAssists / statsRes.data.response.length);
-    const avgSteals = Math.round(totalSteals / statsRes.data.response.length);
-    const avgBlocks = Math.round(totalBlocks / statsRes.data.response.length);
-    const avgTurnovers = Math.round(totalTurnovers / statsRes.data.response.length);
+    // pts
+    const avgPtsArr = JSON.stringify(totalPts / statsRes.data.response.length)
+      .split(".");
+    const avgPts = Number(`${avgPtsArr[0]}.${avgPtsArr[1].charAt(0)}`);
+
+    // rebs
+    const avgRebArr = JSON.stringify(totalReb / statsRes.data.response.length)
+      .split(".");
+    const avgReb = Number(`${avgRebArr[0]}.${avgRebArr[1].charAt(0)}`);
+
+    // assists
+    const avgAssistsArr = JSON.stringify(totalAssists / statsRes.data.response.length)
+      .split(".");
+    const avgAssists = Number(`${avgAssistsArr[0]}.${avgAssistsArr[1].charAt(0)}`);
+
+    // steals
+    const avgStealsArr = JSON.stringify(totalSteals / statsRes.data.response.length)
+      .split(".");
+    const avgSteals = Number(`${avgStealsArr[0]}.${avgStealsArr[1].charAt(0)}`);
+
+    // blocks
+    const avgBlocksArr = JSON.stringify(totalBlocks / statsRes.data.response.length)
+      .split(".");
+    const avgBlocks = Number(`${avgBlocksArr[0]}.${avgBlocksArr[1].charAt(0)}`);
+
+    // turnovers
+    const avgTurnoversArr = JSON.stringify(totalTurnovers / statsRes.data.response.length)
+      .split(".");
+    const avgTurnovers = Number(`${avgTurnoversArr[0]}.${avgTurnoversArr[1].charAt(0)}`);
 
     // compiled player info
     const playerStats = {
